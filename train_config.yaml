@@ -1,0 +1,55 @@
+stage_1:
+  data: "yolo_config.yaml"
+  epochs: 60
+  batch: 16
+  imgsz: 1024
+  device: "0"
+  project: "soccer_training"
+  name: "ball"
+  exist_ok: true
+  freeze: [0, 1, 2, 3]
+  patience: 15
+  augment: true
+  classes: [0]
+  lr0: 0.01
+  lrf: 0.01
+  momentum: 0.937
+  weight_decay: 0.0005
+  hsv_h: 0.015
+  hsv_s: 0.7
+  hsv_v: 0.4
+  translate: 0.1
+  scale: 0.5
+  fliplr: 0.5
+  mosaic: 1.0
+  mixup: 0.3
+  box: 0.05
+  cls: 0.5
+  dfl: 1.5
+
+stage_2:
+  data: "yolo_config.yaml"
+  epochs: 80
+  batch: 16
+  imgsz: 1536
+  device: "0"
+  project: "soccer_training"
+  name: "only_ball"
+  exist_ok: true
+  patience: 10
+  classes: [0]
+  save_period: 5
+  augment: true
+
+stage_3:
+  data: "yolo_config.yaml"
+  epochs: 100
+  batch: 16
+  imgsz: 1024
+  device: "0"
+  project: "soccer_training"
+  name: "ball_and_player"
+  exist_ok: true
+  patience: 10
+  save_period: 5
+  verbose: true
